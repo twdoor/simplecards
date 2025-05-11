@@ -11,10 +11,16 @@ config_version=5
 [application]
 
 config/name="SimpleCards"
+run/main_scene="uid://bysr8u2xd3q6v"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/scale=3.0
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

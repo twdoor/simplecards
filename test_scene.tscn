@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bysr8u2xd3q6v"]
+
+[ext_resource type="PackedScene" uid="uid://bi876ij7hkrmm" path="res://addons/simplecards/scenes/card.tscn" id="1_uhqqe"]
+[ext_resource type="Resource" uid="uid://yygnfs3g8t7j" path="res://blank_card.tres" id="2_ia1lp"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Card" parent="CanvasLayer" instance=ExtResource("1_uhqqe")]
+offset_left = 58.0
+offset_top = 66.0
+offset_right = 90.0
+offset_bottom = 114.0
+card_resource = ExtResource("2_ia1lp")
