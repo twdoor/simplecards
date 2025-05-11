@@ -15,9 +15,14 @@ run/main_scene="uid://bysr8u2xd3q6v"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CardGlobals="*res://addons/simplecards/scripts/card_globals.gd"
+
 [display]
 
-window/stretch/scale=3.0
+window/size/viewport_width=768
+window/size/viewport_height=432
 
 [rendering]
 

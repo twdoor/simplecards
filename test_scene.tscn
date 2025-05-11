@@ -1,15 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://bysr8u2xd3q6v"]
+[gd_scene load_steps=5 format=3 uid="uid://bysr8u2xd3q6v"]
 
 [ext_resource type="PackedScene" uid="uid://bi876ij7hkrmm" path="res://addons/simplecards/scenes/card.tscn" id="1_uhqqe"]
 [ext_resource type="Resource" uid="uid://yygnfs3g8t7j" path="res://blank_card.tres" id="2_ia1lp"]
+[ext_resource type="Script" uid="uid://c1ylq4mjp3rgf" path="res://addons/simplecards/scripts/play_area.gd" id="3_sasra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sasra"]
+size = Vector2(207, 164)
 
 [node name="TestScene" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Card" parent="CanvasLayer" instance=ExtResource("1_uhqqe")]
-offset_left = 58.0
-offset_top = 66.0
-offset_right = 90.0
-offset_bottom = 114.0
+offset_left = 31.0
+offset_top = 80.0
+offset_right = 63.0
+offset_bottom = 128.0
 card_resource = ExtResource("2_ia1lp")
+flip_duration = 0.3
+
+[node name="PlayArea" type="Area2D" parent="."]
+script = ExtResource("3_sasra")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+position = Vector2(604, 128)
+shape = SubResource("RectangleShape2D_sasra")

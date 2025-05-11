@@ -33,18 +33,18 @@ func _on_gui_input(event: InputEvent):
 	material.set_shader_parameter("x_rot", rot_y)
 	material.set_shader_parameter("y_rot", rot_x)
 
-func flip_card(_to: CompressedTexture2D):
-	_tween_rotation(0, 90)
-	await get_tree().create_timer(.2).timeout
+func flip_card(_to: CompressedTexture2D, _duration: float):
+	_tween_rotation(0, 90, _duration/2)
+	await get_tree().create_timer(_duration/2).timeout
 	texture = _to
-	_tween_rotation(-90, 0)
-	await get_tree().create_timer(.2).timeout
+	_tween_rotation(-90, 0, _duration/2)
+	await get_tree().create_timer(_duration/2).timeout
 
-func _tween_rotation(_from: float, _to: float):
+func _tween_rotation(_from: float, _to: float, _duration: float = 0.2):
 	var rot_tween: Tween
 	if rot_tween:
 		rot_tween.kill()
 		
 	rot_tween = create_tween().set_ease(Tween.EASE_OUT)
-	rot_tween.tween_property(self, "material:shader_parameter/y_rot", _to, .2).from(_from)
+	rot_tween.tween_property(self, "material:shader_parameter/y_rot", _to, _duration).from(_from)
 	
