@@ -144,7 +144,7 @@ func handle_shadow(delta: float) -> void:
 
 
 func play_card():
-	card_resource.activate()
+	card_resource.activate(get_targets())
 
 func get_targets() -> Array:
 	var targets: Array = []

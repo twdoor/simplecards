@@ -8,5 +8,7 @@
 script = ExtResource("3_v1067")
 card_face = ExtResource("2_hyagp")
 card_back = ExtResource("1_xodr5")
-can_reflip = false
+can_reflip = true
+type = 1
+effect_array = [null, null]
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"

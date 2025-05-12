@@ -10,7 +10,11 @@ class_name CardResource
 @export_enum("GENERAL", "SINGLE_TARGET", "MULTITARGET") var type = 0
 var targets: Array
 
-func activate():
+@export var effect_array: Array
+
+
+func activate(_targets: Array = []):
+	targets = _targets
 	match type:
 		0:
 			use()
@@ -23,10 +27,10 @@ func use():
 	print("Played")
 	
 func target_use(_target: Node):
-	pass
+	print("Used on " + str(targets[0].name))
 	
 func multi_target_use(_targets: Array):
-	pass
-
-func get_target():
-	pass
+	var targets: String = ""
+	for target in _targets:
+		targets += (target.name + " ")
+	print("Used on " + targets)
