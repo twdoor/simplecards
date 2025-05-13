@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://w56wwhxkbnke" path="res://addons/simplecards/scripts/card.gd" id="1_xp22f"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xp22f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nqwt"]
 
 [node name="Card" type="Button"]
 self_modulate = Color(1, 1, 1, 0)
-material = SubResource("ShaderMaterial_xp22f")
+material = SubResource("ShaderMaterial_0nqwt")
 offset_right = 8.0
 offset_bottom = 8.0
 button_mask = 3

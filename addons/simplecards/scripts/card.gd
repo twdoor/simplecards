@@ -1,8 +1,7 @@
-@icon("res://addons/simplecards/assets/icon_card.png")
+@icon("res://addons/simplecards/assets/icon_card_control.png")
+##Simple card resoruce.
+class_name Card 
 extends Button
-class_name Card
-
-const CARD_FACE: CompressedTexture2D = preload("res://addons/simplecards/assets/card_blank.png")
 
 var current_texture: CompressedTexture2D = null
 var face_texture: CompressedTexture2D = null
@@ -13,14 +12,13 @@ var card_area: Area2D = null
 var card_size: Vector2
 
 @export var card_resource: CardResource = null
-
-
 @export var is_draggable: bool = true
 var dragging: bool = false
 var dragging_offset: Vector2 = Vector2.ZERO
 
 var use_shadow: bool = true
 var shadow_card: TextureRect = null
+var play_key: String = ""
 
 #Tween Animating
 var hover_tween: Tween
@@ -32,13 +30,18 @@ func _ready():
 
 func _process(delta):
 	on_dragged()
-	handle_shadow(delta)
+	handle_shadow()
+
+func _unhandled_input(event):
+	if event.is_action_pressed(play_key) and is_hovered() and current_texture != back_texture:
+			play_card()
+
 
 func set_globals():
-	use_shadow = CardGlobals.use_shadows
+	use_shadow = CardSettings.use_shadows
+	play_key = CardSettings.play_key
 
-
-##Sets the required conections and nodes for the card
+##Sets/creates the required conections and nodes for the card
 func set_required():
 	#Make button invisible
 	self_modulate.a = 0
@@ -50,9 +53,11 @@ func set_required():
 	mouse_exited.connect(on_mouse_exited)
 	
 	#manage resource
-	if card_resource:
-		face_texture = card_resource.card_face
-		back_texture = card_resource.card_back
+	if !card_resource:
+		push_error("No card Resource")
+		
+	face_texture = card_resource.card_face
+	back_texture = card_resource.card_back
 		
 	current_texture = back_texture
 	
@@ -88,8 +93,6 @@ func set_required():
 	card_col.shape.size = card_size
 	add_child(card_area)
 	card_area.add_child(card_col)
-	
-
 
 func on_button_down() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -105,8 +108,6 @@ func on_button_down() -> void:
 
 func on_button_up() -> void:
 	dragging = false
-	if get_targets() != []:
-		play_card()
 
 func on_dragged() -> void:
 	if !is_draggable:
@@ -133,7 +134,7 @@ func _tween_hover(_scale: float, _z: int = 1, _duration: float = 0.2) -> void:
 	z_index += _z
 
 
-func handle_shadow(delta: float) -> void:
+func handle_shadow() -> void:
 	if !use_shadow:
 		return
 	
@@ -146,11 +147,14 @@ func handle_shadow(delta: float) -> void:
 func play_card():
 	card_resource.activate(get_targets())
 
+##Get and array of targets that are in on of the filtered groups with the card as the first item.
 func get_targets() -> Array:
 	var targets: Array = []
-	var target_areas = card_area.get_overlapping_areas()
-	for area in target_areas:
-		var temp = area.get_parent()
-		targets.append(temp)
+	for filter in CardSettings.target_filter:
+		var temp_array = get_tree().get_nodes_in_group(filter)
+		targets.assign(temp_array)
 	
+	targets.push_front(self)
+	
+	print(targets)
 	return targets

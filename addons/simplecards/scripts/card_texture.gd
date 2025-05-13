@@ -1,5 +1,7 @@
-extends TextureRect
+##Used in the card node for manging some effects.
 class_name CardTexture
+extends TextureRect
+
 
 var angle_x_max: float = .2
 var angle_y_max: float = .2

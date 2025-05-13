@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb5c7louxghq1"
-path="res://.godot/imported/card_blank.png-113b041281d331ad3591bb263dbabd69.ctex"
+uid="uid://uvn78su4u7pm"
+path="res://.godot/imported/icon_card_res.png-48cc151aa74cd216539c15e2f34c42bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/simplecards/assets/card_blank.png"
-dest_files=["res://.godot/imported/card_blank.png-113b041281d331ad3591bb263dbabd69.ctex"]
+source_file="res://addons/simplecards/assets/icon_card_res.png"
+dest_files=["res://.godot/imported/icon_card_res.png-48cc151aa74cd216539c15e2f34c42bd.ctex"]
 
 [params]
 
