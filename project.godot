@@ -13,11 +13,11 @@ config_version=5
 config/name="SimpleCards"
 run/main_scene="uid://bysr8u2xd3q6v"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [autoload]
 
-CardSettings="*res://addons/simplecards/scripts/card_settings.gd"
+CardGlobal="*res://addons/simple_cards/scripts/card_global.gd"
 
 [display]
 
@@ -27,14 +27,17 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplecards/plugin.cfg")
+enabled=PackedStringArray("res://addons/simple_cards/plugin.cfg")
 
 [global_group]
 
 entity=""
+zone=""
+player=""
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.288518, 0.288518, 0.288518, 1)

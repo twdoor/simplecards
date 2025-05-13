@@ -1,0 +1,96 @@
+[gd_scene load_steps=17 format=3 uid="uid://bysr8u2xd3q6v"]
+
+[ext_resource type="PackedScene" uid="uid://bi876ij7hkrmm" path="res://addons/simple_cards/scenes/card.tscn" id="1_mgca8"]
+[ext_resource type="Texture2D" uid="uid://dlmd8tyst33lr" path="res://addons/simple_cards/example/assets/back_tw.png" id="2_76trw"]
+[ext_resource type="Resource" uid="uid://bxs6qrsw8f38e" path="res://addons/simple_cards/example/card_resources/heal_card.tres" id="3_85hip"]
+[ext_resource type="Script" uid="uid://bxc3np2pqu1gb" path="res://addons/simple_cards/resources/effect_resource.gd" id="4_0eu6r"]
+[ext_resource type="Script" uid="uid://w56wwhxkbnke" path="res://addons/simple_cards/scripts/card.gd" id="4_y0sxq"]
+[ext_resource type="Texture2D" uid="uid://bb5c7louxghq1" path="res://addons/simple_cards/example/assets/card_blank.png" id="6_0eu6r"]
+[ext_resource type="Script" uid="uid://6h70gh0ms0mh" path="res://addons/simple_cards/resources/card_resource.gd" id="7_ba4jb"]
+[ext_resource type="Resource" uid="uid://yygnfs3g8t7j" path="res://addons/simple_cards/example/card_resources/damage_card.tres" id="8_4rfyl"]
+[ext_resource type="Script" uid="uid://bjnt75rkwvx4y" path="res://addons/simple_cards/example/effect_resource_scripts/damage_target.gd" id="8_xk6mb"]
+[ext_resource type="Texture2D" uid="uid://cjr0y5bstltho" path="res://addons/simple_cards/example/assets/guy_test.png" id="9_76trw"]
+[ext_resource type="Script" uid="uid://bp3to2lvrp3k2" path="res://addons/simple_cards/example/entity.gd" id="10_y0sxq"]
+[ext_resource type="Texture2D" uid="uid://dvy4oslve41if" path="res://addons/simple_cards/example/assets/enemy_test.png" id="11_0eu6r"]
+
+[sub_resource type="Resource" id="Resource_fwjum"]
+script = ExtResource("8_xk6mb")
+damage_ammount = 1
+group = "entity"
+metadata/_custom_type_script = "uid://bjnt75rkwvx4y"
+
+[sub_resource type="Resource" id="Resource_xk6mb"]
+script = ExtResource("7_ba4jb")
+card_face = ExtResource("6_0eu6r")
+card_back = ExtResource("2_76trw")
+card_description = "Damage everyone in group entity"
+can_reflip = true
+effects = Array[ExtResource("4_0eu6r")]([SubResource("Resource_fwjum")])
+metadata/_custom_type_script = "uid://6h70gh0ms0mh"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eu6r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.490196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk6mb"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="ExampleScene" type="Node2D"]
+
+[node name="Card Holder" type="CanvasLayer" parent="."]
+
+[node name="Card" parent="Card Holder" instance=ExtResource("1_mgca8")]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 88.0
+card_resource = ExtResource("8_4rfyl")
+
+[node name="Card2" parent="Card Holder" instance=ExtResource("1_mgca8")]
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 88.0
+card_resource = ExtResource("3_85hip")
+
+[node name="Card3" type="Button" parent="Card Holder"]
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 128.0
+offset_bottom = 48.0
+button_mask = 0
+script = ExtResource("4_y0sxq")
+card_resource = SubResource("Resource_xk6mb")
+metadata/_custom_type_script = "uid://w56wwhxkbnke"
+
+[node name="Player" type="Sprite2D" parent="." node_paths=PackedStringArray("health_bar") groups=["entity", "player"]]
+position = Vector2(132, 338)
+scale = Vector2(4, 4)
+texture = ExtResource("9_76trw")
+script = ExtResource("10_y0sxq")
+health_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 15.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0eu6r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xk6mb")
+show_percentage = false
+
+[node name="Enemy" type="Sprite2D" parent="." node_paths=PackedStringArray("health_bar") groups=["entity"]]
+position = Vector2(622, 350)
+scale = Vector2(4, 4)
+texture = ExtResource("11_0eu6r")
+flip_h = true
+script = ExtResource("10_y0sxq")
+health_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="Enemy"]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 15.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0eu6r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xk6mb")
+show_percentage = false

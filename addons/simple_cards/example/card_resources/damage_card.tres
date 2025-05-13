@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://yygnfs3g8t7j"]
+
+[ext_resource type="Texture2D" uid="uid://dlmd8tyst33lr" path="res://addons/simple_cards/example/assets/back_tw.png" id="1_mhy1y"]
+[ext_resource type="Texture2D" uid="uid://buxg6dtd2no0w" path="res://addons/simple_cards/example/assets/card_red.png" id="2_f07y0"]
+[ext_resource type="Script" uid="uid://bxc3np2pqu1gb" path="res://addons/simple_cards/resources/effect_resource.gd" id="3_th0tk"]
+[ext_resource type="Script" uid="uid://bjnt75rkwvx4y" path="res://addons/simple_cards/example/effect_resource_scripts/damage_target.gd" id="4_je107"]
+[ext_resource type="Script" uid="uid://6h70gh0ms0mh" path="res://addons/simple_cards/resources/card_resource.gd" id="5_6lv26"]
+
+[sub_resource type="Resource" id="Resource_vimun"]
+script = ExtResource("4_je107")
+damage_ammount = 3
+group = "player"
+metadata/_custom_type_script = "uid://bjnt75rkwvx4y"
+
+[resource]
+script = ExtResource("5_6lv26")
+card_face = ExtResource("2_f07y0")
+card_back = ExtResource("1_mhy1y")
+card_description = "Damage everyone in group player"
+can_reflip = false
+effects = Array[ExtResource("3_th0tk")]([SubResource("Resource_vimun")])
+metadata/_custom_type_script = "uid://6h70gh0ms0mh"
