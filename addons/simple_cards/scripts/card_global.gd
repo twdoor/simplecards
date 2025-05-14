@@ -6,7 +6,7 @@ var use_tooltips: bool = true ##Shows tooltips on cards
 var play_key: String = "ui_accept" ##Input key used to play cards
 
 ##Use this array to add groups of nodes 
-var target_filter: Array[String] = ["entity", "zone", "player"]
+var target_filter: Array[String] = ["entity", "player"]
 
 
 ##Gets all nodes in the tagged by target_filter and puts them into an array

@@ -10,7 +10,6 @@ extends Resource
 
 @export var can_reflip: bool = false
 @export var effects: Array[EffectResource]
-var targets: Array
 
 
 func activate(_card: Card):

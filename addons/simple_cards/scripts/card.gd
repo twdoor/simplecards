@@ -24,10 +24,10 @@ var use_shadow: bool = true
 var shadow_card: TextureRect = null
 var play_key: String = ""
 
-@export_enum("Back", "Face") var start_face = "Back"
+@export_enum("Back", "Face") var start_face = "Back" ##Sets on what face the card spawns
 #Tween Animating
 var hover_tween: Tween
-@export var flip_duration: float = 0.3
+@export var flip_duration: float = 0.3 ##Duration of the flip animation
 
 
 func _ready():
@@ -75,7 +75,7 @@ func set_required():
 	set_tooltip()
 	
 	#Set size of the card
-	card_size = face_texture.get_size()
+	card_size = current_texture.get_size()
 	self.size = card_size
 	pivot_offset = size/2
 	
@@ -95,10 +95,6 @@ func set_required():
 	card_texture.texture = current_texture
 	card_texture.name = "Card Texture"
 	add_child(card_texture)
-	
-	#glint shader
-	if !material:
-		material = ShaderMaterial.new()
 
 
 func set_tooltip():
