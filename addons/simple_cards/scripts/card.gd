@@ -3,7 +3,6 @@
 class_name Card 
 extends Button
 
-const GLINT_SHADER: Shader = preload("res://addons/simple_cards/assets/highlight_shader.gdshader")
 
 var current_texture: CompressedTexture2D = null: ##This is the texture you see
 	set(v):
@@ -30,14 +29,6 @@ var play_key: String = ""
 var hover_tween: Tween
 @export var flip_duration: float = 0.3
 
-#glint
-@export var show_glint: bool = false:
-	set(v):
-		show_glint = v
-		if show_glint:
-			(material as ShaderMaterial).shader = GLINT_SHADER
-		else:
-			(material as ShaderMaterial).shader = null
 
 func _ready():
 	set_required()

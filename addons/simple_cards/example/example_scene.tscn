@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://bysr8u2xd3q6v"]
+[gd_scene load_steps=16 format=3 uid="uid://bysr8u2xd3q6v"]
 
-[ext_resource type="PackedScene" uid="uid://bi876ij7hkrmm" path="res://addons/simple_cards/scenes/card.tscn" id="1_mgca8"]
 [ext_resource type="Texture2D" uid="uid://dlmd8tyst33lr" path="res://addons/simple_cards/example/assets/back_tw.png" id="2_76trw"]
 [ext_resource type="Resource" uid="uid://bxs6qrsw8f38e" path="res://addons/simple_cards/example/card_resources/heal_card.tres" id="3_85hip"]
 [ext_resource type="Script" uid="uid://bxc3np2pqu1gb" path="res://addons/simple_cards/resources/effect_resource.gd" id="4_0eu6r"]
@@ -24,7 +23,7 @@ script = ExtResource("7_ba4jb")
 card_face = ExtResource("6_0eu6r")
 card_back = ExtResource("2_76trw")
 card_description = "Damage everyone in group entity"
-can_reflip = true
+can_reflip = false
 effects = Array[ExtResource("4_0eu6r")]([SubResource("Resource_fwjum")])
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"
 
@@ -38,19 +37,23 @@ bg_color = Color(0, 1, 0, 1)
 
 [node name="Card Holder" type="CanvasLayer" parent="."]
 
-[node name="Card" parent="Card Holder" instance=ExtResource("1_mgca8")]
+[node name="Card" type="Button" parent="Card Holder"]
 offset_left = 40.0
 offset_top = 40.0
-offset_right = 72.0
-offset_bottom = 88.0
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("4_y0sxq")
 card_resource = ExtResource("8_4rfyl")
+metadata/_custom_type_script = "uid://w56wwhxkbnke"
 
-[node name="Card2" parent="Card Holder" instance=ExtResource("1_mgca8")]
+[node name="Card2" type="Button" parent="Card Holder"]
 offset_left = 80.0
 offset_top = 40.0
-offset_right = 112.0
-offset_bottom = 88.0
+offset_right = 88.0
+offset_bottom = 48.0
+script = ExtResource("4_y0sxq")
 card_resource = ExtResource("3_85hip")
+metadata/_custom_type_script = "uid://w56wwhxkbnke"
 
 [node name="Card3" type="Button" parent="Card Holder"]
 offset_left = 120.0
