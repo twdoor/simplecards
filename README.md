@@ -5,11 +5,11 @@ I am working on my own card game and i did not see any addon that does what I wa
 ## Main Features
 Cards with clean amimations using shaders or tweens.
 
-![Gif of example scene](https://raw.githubusercontent.com/twdoor/simplecards/refs/heads/main/card_showcase.gif?token=GHSAT0AAAAAADDRITBVKRB7UQML4EPGHMAG2BELAXQ)
+![Gif of example scene](https://github.com/twdoor/simplecards/blob/main/card_showcase.gif)
 
 Modularity by using reusable resources.
 
-![Gif of creating a card](https://raw.githubusercontent.com/twdoor/simplecards/refs/heads/main/creation_showcase.gif?token=GHSAT0AAAAAADDRITBVZL2HRFACCJEVLR4S2BELAYQ)
+![Gif of creating a card](https://github.com/twdoor/simplecards/blob/main/creation_showcase.gif)
 
 ## How it works
 !Don't forget to enable the plugin!
@@ -44,8 +44,8 @@ To create a new effect, create a new script that extends EffectResource, give it
 "func use(card)" is the triggered function when the card is played; this is where the main logic should be.
 You can also add exported varialbels or anything that helps :)
 
-![photo of example code](https://raw.githubusercontent.com/twdoor/simplecards/refs/heads/main/effect_code.png?token=GHSAT0AAAAAADDRITBU6E2BFCARQ4EEERAA2BELAZQ)
-![photo of example setup](https://raw.githubusercontent.com/twdoor/simplecards/refs/heads/main/effect_res.png?token=GHSAT0AAAAAADDRITBVFKJBKOLY7T2IV3DI2BELA2Q)
+![photo of example code](https://github.com/twdoor/simplecards/blob/main/effect_code.png)
+![photo of example setup](https://github.com/twdoor/simplecards/blob/main/effect_res.png)
 
 ### Card Global
 This is a global script that manages some settings or special functions:
