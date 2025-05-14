@@ -1,13 +1,11 @@
 @tool
 extends EditorPlugin
 
-#Nothing To See Here
+const CARD_GLOBAL = "CardGlobal"
 
 func _enter_tree():
-	# Initialization of the plugin goes here.
-	pass
+	add_autoload_singleton(CARD_GLOBAL, "res://addons/simple_cards/scripts/card_global.gd")
 
 
 func _exit_tree():
-	# Clean-up of the plugin goes here.
-	pass
+	remove_autoload_singleton(CARD_GLOBAL)

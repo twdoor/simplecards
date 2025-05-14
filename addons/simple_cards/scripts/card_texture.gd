@@ -6,6 +6,7 @@ extends TextureRect
 var angle_x_max: float = .2
 var angle_y_max: float = .2
 
+
 const PERSPECTIVE_SHADER: Shader = preload("res://addons/simple_cards/assets/perspective_shader.gdshader")
 var shader: Shader = null
 
@@ -14,7 +15,8 @@ func _ready():
 	if !material:
 		material = ShaderMaterial.new()
 		material.shader = PERSPECTIVE_SHADER
-	
+
+
 func reset_rot():
 	material.set_shader_parameter("x_rot", 0)
 	material.set_shader_parameter("y_rot", 0)

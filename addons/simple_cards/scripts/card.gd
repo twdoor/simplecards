@@ -3,6 +3,11 @@
 class_name Card 
 extends Button
 
+signal card_moved(card: Card)
+signal card_played(card: Card)
+
+const CARD_SCENE := preload("res://addons/simple_cards/scenes/card.tscn")
+const TEST_RESOURCE := preload("res://addons/simple_cards/resources/test_card.tres")
 
 var current_texture: CompressedTexture2D = null: ##This is the texture you see
 	set(v):
@@ -11,9 +16,7 @@ var current_texture: CompressedTexture2D = null: ##This is the texture you see
 var face_texture: CompressedTexture2D = null ##This is the texture of the front of the card
 var back_texture: CompressedTexture2D = null ##This is the texture of the bakc of the card
 var card_texture: CardTexture = null  ##This is the actual node on witch the textures are placed
-
-
-var card_size: Vector2
+var card_size: Vector2 = Vector2.ZERO ##This is used to set the size of buttons/areas
 
 @export var card_resource: CardResource = null ##Card Resource is where the informantion of the card is stored
 @export var is_draggable: bool = true ##Sets if card can be dragged or not
@@ -25,9 +28,19 @@ var shadow_card: TextureRect = null
 var play_key: String = ""
 
 @export_enum("Back", "Face") var start_face = "Back" ##Sets on what face the card spawns
-#Tween Animating
-var hover_tween: Tween
 @export var flip_duration: float = 0.3 ##Duration of the flip animation
+
+var initial_position: Vector2 = Vector2.ZERO
+
+##This can be used to spawn a card anywhere if given a resource
+static func spawn_card(_card_resource: CardResource = TEST_RESOURCE, _name: String = "") -> Card:
+	var _card: Card = CARD_SCENE.instantiate()
+	_card.card_resource = _card_resource
+	if _name == "":
+		_card.name = "Card " + str(randi_range(10000, 99999))
+	else: _card.name = _name
+	
+	return _card
 
 
 func _ready():
@@ -109,6 +122,8 @@ func set_tooltip():
 
 func on_button_down() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		initial_position = global_position
+		
 		dragging = true
 		dragging_offset = get_global_mouse_position() - position
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
@@ -124,6 +139,11 @@ func on_button_down() -> void:
 
 func on_button_up() -> void:
 	dragging = false
+	card_texture.reset_rot()
+	
+	##Emit signal if the position of the card changed
+	if global_position != initial_position:
+		card_moved.emit(self)
 
 
 func on_dragged() -> void:
@@ -131,24 +151,34 @@ func on_dragged() -> void:
 		return
 	
 	if dragging:
-		position = (get_global_mouse_position() - dragging_offset)
+		handle_movement(get_global_mouse_position() - dragging_offset)
 
 
 func on_mouse_entered() -> void:
-	_tween_hover(1.2)
+	handle_hover(1.2)
 
 
 func on_mouse_exited() -> void:
-	_tween_hover(1, -1)
+	handle_hover(1, -1)
 	card_texture.reset_rot()
 
 
-func _tween_hover(_scale: float, _z: int = 1, _duration: float = 0.2) -> void:
+func handle_hover(_scale: float, _z: int = 1, _duration: float = 0.2) -> void:
+	var hover_tween: Tween
 	if hover_tween:
 		hover_tween.kill()
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 	hover_tween.tween_property(self, "scale", Vector2(_scale, _scale), _duration)
 	z_index += _z
+
+func handle_movement(_move_to: Vector2, is_global: bool = false, _duration: float = 0.1):
+	var move_tween: Tween
+	if move_tween:
+		move_tween.kill()
+	move_tween = create_tween()
+	if is_global:
+		move_tween.tween_property(self, "global_position", _move_to, _duration)
+	else: move_tween.tween_property(self, "position", _move_to, _duration)
 
 
 func handle_shadow() -> void:
@@ -161,3 +191,4 @@ func handle_shadow() -> void:
 
 func play_card():
 	card_resource.activate(self)
+	card_played.emit(self)
