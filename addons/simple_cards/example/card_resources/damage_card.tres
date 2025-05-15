@@ -17,6 +17,5 @@ script = ExtResource("5_6lv26")
 card_face = ExtResource("2_f07y0")
 card_back = ExtResource("1_mhy1y")
 card_description = "Damage everyone in group player"
-can_reflip = false
 effects = Array[ExtResource("3_th0tk")]([SubResource("Resource_vimun")])
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"

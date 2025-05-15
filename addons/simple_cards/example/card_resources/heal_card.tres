@@ -17,6 +17,5 @@ script = ExtResource("5_fp4m3")
 card_face = ExtResource("2_1o3h4")
 card_back = ExtResource("1_cnhr7")
 card_description = "Heals everyone in group player"
-can_reflip = false
 effects = Array[ExtResource("3_utumg")]([SubResource("Resource_xk6mb")])
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"

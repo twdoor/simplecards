@@ -17,7 +17,7 @@ func _ready():
 		material.shader = PERSPECTIVE_SHADER
 
 
-func reset_rot():
+func reset_shader_rot():
 	material.set_shader_parameter("x_rot", 0)
 	material.set_shader_parameter("y_rot", 0)
 	

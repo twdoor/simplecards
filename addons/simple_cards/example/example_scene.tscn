@@ -22,7 +22,6 @@ script = ExtResource("7_ba4jb")
 card_face = ExtResource("6_0eu6r")
 card_back = ExtResource("2_76trw")
 card_description = "Despawns on use"
-can_reflip = false
 effects = Array[ExtResource("4_0eu6r")]([SubResource("Resource_xk6mb")])
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"
 

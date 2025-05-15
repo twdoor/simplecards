@@ -14,6 +14,5 @@ script = ExtResource("2_f7bn7")
 card_face = ExtResource("2_meyar")
 card_back = ExtResource("1_cfnwg")
 card_description = "Test Card - Does nothing"
-can_reflip = true
 effects = Array[ExtResource("1_qb5at")]([SubResource("Resource_e2vs8")])
 metadata/_custom_type_script = "uid://6h70gh0ms0mh"
